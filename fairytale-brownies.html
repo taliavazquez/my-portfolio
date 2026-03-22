@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fairytale Brownies · Talia Vazquez</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300;
+      color: #522F1D;
+      background: #FEFAF0;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3 { font-family: 'Poppins', sans-serif; font-weight: 700; }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* ===== NAVBAR ===== */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 48px;
+      background: #FEFAF0;
+    }
+    .nav-logo {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #a13a1e;
+      letter-spacing: -0.2px;
+      white-space: nowrap;
+    }
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .nav-links a {
+      font-size: 0.78rem;
+      font-weight: 300;
+      color: #a13a1e;
+      opacity: 0.85;
+      transition: color 0.2s, opacity 0.2s;
+    }
+    .nav-links a:hover { color: #a13a1e; opacity: 1; }
+    .nav-hire {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #FEFAF0;
+      padding: 7px 18px;
+      border-radius: 6px;
+      border: 2px solid #AE9662;
+      background: #AE9662;
+      transition: background 0.2s, color 0.2s;
+      white-space: nowrap;
+    }
+    .nav-hire:hover { background: #AE9662; color: #FEFAF0; }
+
+    /* ===== HERO ===== */
+    #hero {
+      background: #6E488D;
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 140px 48px 80px;
+    }
+    .hero-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      font-variant: small-caps;
+      letter-spacing: 3px;
+      color: #FFFFFF;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .hero-title {
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 300;
+      color: #FFFFFF;
+      letter-spacing: 3px;
+      line-height: 1.1;
+    }
+
+    /* ===== SHARED ===== */
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #63488d;
+      display: block;
+    }
+    .section-label-centered {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #63488d;
+      display: block;
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    .body-text {
+      font-size: 0.95rem;
+      line-height: 1.85;
+      color: #522F1D;
+    }
+
+    /* ===== LOGO SECTION ===== */
+    #logo-section {
+      background: #FEFAF0;
+      padding: 60px 80px 0;
+    }
+    .logo-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .logo-placeholder {
+      width: 200px;
+      height: 100px;
+      border-radius: 12px;
+      background: #E9ACC8;
+      margin-top: 16px;
+    }
+
+    /* ===== OVERVIEW ===== */
+    #overview {
+      background: #FEFAF0;
+      padding: 60px 80px 80px;
+    }
+    .overview-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 80px;
+      align-items: start;
+    }
+    .overview-body {
+      font-size: 0.95rem;
+      line-height: 1.85;
+      color: #522F1D;
+      margin-bottom: 48px;
+    }
+    .overview-body:last-child { margin-bottom: 0; }
+    .overview-right-item { margin-bottom: 36px; }
+    .overview-right-item:last-child { margin-bottom: 0; }
+    .overview-right-text {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: #522F1D;
+      margin-top: 10px;
+    }
+
+    /* ===== EMAIL GRID LAYOUT ===== */
+    .emails-section {
+      padding: 80px 80px;
+    }
+    .emails-section-white { background: #fff; }
+    .emails-section-gray { background: #ffffff; }
+    .emails-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .emails-layout {
+      display: flex;
+      gap: 24px;
+      align-items: stretch;
+      margin-top: 0;
+    }
+    .emails-grid-left {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      flex: 1;
+    }
+    .email-thumb {
+      border-radius: 12px;
+      display: block;
+      width: 100%;
+      height: 250px;
+    }
+    .email-thumb-tall {
+      border-radius: 12px;
+      display: block;
+      width: 250px;
+      flex-shrink: 0;
+      height: 516px;
+    }
+
+    /* ===== PROCESS SECTION ===== */
+    #process {
+      background: #FEFAF0;
+      padding: 80px 80px;
+    }
+    .process-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .process-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px 80px;
+      margin-top: 48px;
+    }
+    .process-step .step-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #63488d;
+      display: block;
+      margin-bottom: 14px;
+    }
+    .process-step .step-body {
+      font-size: 0.9rem;
+      line-height: 1.85;
+      color: #522F1D;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #FEFAF0;
+      color: #522F1D;
+      padding: 48px 48px 36px;
+      border-top: 1px solid rgba(82,47,29,0.1);
+    }
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 12px;
+    }
+    .footer-brand .footer-tagline { font-size: 0.85rem; opacity: 0.65; letter-spacing: 0.3px; }
+    .footer-copy {
+      max-width: 1100px;
+      margin: 28px auto 0;
+      padding-top: 20px;
+      border-top: 1px solid rgba(82,47,29,0.2);
+      font-size: 0.78rem;
+      opacity: 0.5;
+      text-align: center;
+    }
+
+    /* ===== BACK TO TOP ===== */
+    .back-to-top {
+      position: fixed;
+      bottom: 28px; right: 28px;
+      width: 46px; height: 46px;
+      background: #a13a1e;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 16px rgba(161,58,30,0.35);
+      cursor: pointer;
+      border: none;
+      z-index: 998;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s, transform 0.2s;
+    }
+    .back-to-top.visible { opacity: 1; pointer-events: auto; }
+    .back-to-top:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(109,58,82,0.4); }
+
+    .hamburger { display: none; }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #FAF6EE;
+        padding: 20px 0;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        z-index: 999;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a {
+        padding: 14px 40px;
+        font-size: 1rem;
+        border-bottom: 1px solid rgba(0,0,0,0.06);
+      }
+      .hamburger {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 24px;
+        height: 18px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+      }
+      .hamburger span {
+        display: block;
+        width: 100%;
+        height: 2px;
+        background: #3a3a3a;
+        border-radius: 2px;
+      }
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      nav { padding: 18px 24px; }
+      .nav-links { gap: 22px; }
+      #hero { padding: 120px 24px 60px; }
+      #logo-section,
+      #overview,
+      .emails-section,
+      #process { padding: 40px 24px; }
+      .overview-inner { grid-template-columns: 1fr; gap: 40px; }
+      .emails-layout { flex-direction: column; }
+      .email-thumb-tall { width: 100%; height: 300px; }
+      .process-grid { grid-template-columns: 1fr; gap: 36px; }
+      footer { padding: 40px 24px 28px; }
+    }
+    @media (max-width: 560px) {
+      nav { padding: 16px 20px; }
+      .nav-links { gap: 16px; }
+      .nav-hire { padding: 7px 16px; font-size: 0.78rem; }
+      .emails-grid-left { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav>
+    <a href="index.html" class="nav-logo"><img src="Artboard10.png" alt="Talia Vazquez" style="height:40px;display:block;"></a>
+    <ul class="nav-links">
+      <li><a href="work.html">Graphic Design</a></li>
+      <li><a href="illustration.html">Illustration</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="https://drive.google.com/file/d/1BVcCVkNNuXcY_24XeNwy87yWmKQnrnGC/view?usp=drive_link" target="_blank" rel="noopener" class="nav-hire">Resume</a>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section id="hero">
+    <div>
+      <p class="hero-label">2025</p>
+      <h1 class="hero-title">Fairytale Brownies</h1>
+    </div>
+  </section>
+
+  <!-- ===== LOGO ===== -->
+  <!-- ===== OVERVIEW ===== -->
+  <section id="overview">
+    <div class="overview-inner">
+      <div class="overview-left">
+        <span class="section-label" style="margin-bottom:14px;">overview</span>
+        <p class="overview-body">As the Email and Production Designer at Fairytale Brownies, I created branded email campaigns and supporting digital assets that aligned with seasonal promotions and marketing initiatives. I collaborated with the marketing team to ensure cohesive messaging, strong visual consistency, and optimised layouts across email and social media platforms.</p>
+        <span class="section-label" style="margin-bottom:14px;">challenges</span>
+        <p class="overview-body">As my first professional design role, this position pushed me to quickly learn email marketing systems, platform constraints, and performance-driven design. Navigating these new responsibilities expanded my understanding of marketing strategy and how effective design directly supports business goals.</p>
+      </div>
+      <div class="overview-right">
+        <div class="overview-right-item">
+          <span class="section-label">role</span>
+          <p class="overview-right-text">Email &amp; Production Designer</p>
+        </div>
+        <div class="overview-right-item">
+          <span class="section-label">tools</span>
+          <p class="overview-right-text">Photoshop, Illustrator, Klaviyo, Attentive, Microsoft</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ILLUSTRATION EMAILS ===== -->
+  <section class="emails-section emails-section-white">
+    <div class="emails-inner">
+      <span class="section-label-centered">illustration emails</span>
+      <img src="Artboard22.png" alt="Illustration Emails" style="width:100%;display:block;border-radius:0;object-fit:contain;">
+    </div>
+  </section>
+
+  <!-- ===== PROCESS ===== -->
+  <section id="process">
+    <div class="process-inner">
+      <span class="section-label" style="text-align:center;">process</span>
+      <div class="process-grid">
+        <div class="process-step">
+          <span class="step-label">Research &amp; Inspiration</span>
+          <p class="step-body">I begin by gathering inspiration and building a mood board that aligns with the campaign's theme, seasonality, and brand guidelines. This step helps establish visual direction, typography, color palette, and overall tone before moving into production.</p>
+        </div>
+        <div class="process-step">
+          <span class="step-label">Asset Design</span>
+          <p class="step-body">Next, I design the core visual assets in Adobe Photoshop and Illustrator. This includes hero graphics, product callouts, promotional banners, and supporting visuals that will anchor the email layout.</p>
+        </div>
+        <div class="process-step">
+          <span class="step-label">Email Build in Klaviyo</span>
+          <p class="step-body">Once assets are finalized, I export and upload them into Klaviyo, where I build out the full email layout. During this stage, I create buttons, links, and supporting design elements directly within the platform. I also implement light HTML customization when needed to refine spacing, alignment, or responsiveness.</p>
+        </div>
+        <div class="process-step">
+          <span class="step-label">Testing &amp; Scheduling</span>
+          <p class="step-body">Before launch, I review the email for visual consistency, functionality, and mobile responsiveness. After final approval, I schedule the campaign within Klaviyo to ensure timely and strategic delivery.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MORE EMAILS ===== -->
+  <section class="emails-section emails-section-gray">
+    <div class="emails-inner">
+      <span class="section-label-centered">more emails</span>
+      <img src="Artboard23.png" alt="More Emails" style="width:100%;display:block;border-radius:0;object-fit:contain;">
+    </div>
+  </section>
+
+  <!-- ===== VIEW MORE PROJECTS ===== -->
+  <section style="background:#FAF6EE; padding: 60px 80px;">
+    <span style="display:block; font-size:0.75rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#63488d; margin-bottom:36px; text-align:center;">View More Projects</span>
+    <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:20px;">
+      <a href="driveway-auto-spa.html" style="text-decoration:none; display:block;">
+        <img src="Artboard19.png" alt="Driveway Auto Spa" style="width:100%; display:block; border-radius:8px; object-fit:cover; aspect-ratio:4/3;">
+        <p style="margin:10px 0 0; font-size:0.85rem; font-weight:600; color:#3a3a3a; text-align:center;">Driveway Auto Spa</p>
+      </a>
+      <a href="game-conference.html" style="text-decoration:none; display:block;">
+        <img src="Artboard17.png" alt="G.A.M.E. Conference" style="width:100%; display:block; border-radius:8px; object-fit:cover; aspect-ratio:4/3;">
+        <p style="margin:10px 0 0; font-size:0.85rem; font-weight:600; color:#3a3a3a; text-align:center;">G.A.M.E. Conference</p>
+      </a>
+      <a href="collab-commons.html" style="text-decoration:none; display:block;">
+        <img src="Artboard18.png" alt="Collab Commons" style="width:100%; display:block; border-radius:8px; object-fit:cover; aspect-ratio:4/3;">
+        <p style="margin:10px 0 0; font-size:0.85rem; font-weight:600; color:#3a3a3a; text-align:center;">Collab Commons</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" style="display:block;margin:0 auto 4px;text-align:center;"><img src="Artboard10.png" alt="Talia Vazquez" style="height:60px;display:block;margin:0 auto;"></a>
+        <div class="footer-tagline">Graphic Designer &amp; Illustrator · Phoenix, AZ</div>
+      </div>
+    </div>
+    <div class="footer-copy">
+      © 2026 Talia Vazquez
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
+
+  <script>
+    document.getElementById('hamburger').addEventListener('click', function() {
+      document.querySelector('.nav-links').classList.toggle('open');
+    });
+
+    const btn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      btn.classList.toggle('visible', window.scrollY > 400);
+    });
+  </script>
+
+</body>
+</html>

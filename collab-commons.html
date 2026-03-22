@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Collab Commons · Talia Vazquez</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300;
+      color: #522F1D;
+      background: #FEFAF0;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3 { font-family: 'Poppins', sans-serif; font-weight: 700; }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* ===== NAVBAR ===== */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 48px;
+      background: #FEFAF0;
+    }
+    .nav-logo {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #a13a1e;
+      letter-spacing: -0.2px;
+      white-space: nowrap;
+    }
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .nav-links a {
+      font-size: 0.78rem;
+      font-weight: 300;
+      color: #a13a1e;
+      opacity: 0.85;
+      transition: color 0.2s, opacity 0.2s;
+    }
+    .nav-links a:hover { color: #a13a1e; opacity: 1; }
+    .nav-hire {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #FEFAF0;
+      padding: 7px 18px;
+      border-radius: 6px;
+      border: 2px solid #AE9662;
+      background: #AE9662;
+      transition: background 0.2s, color 0.2s;
+      white-space: nowrap;
+    }
+    .nav-hire:hover { background: #AE9662; color: #FEFAF0; }
+
+    /* ===== HERO ===== */
+    #hero {
+      background: #114651;
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 140px 48px 80px;
+    }
+    .hero-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      font-variant: small-caps;
+      letter-spacing: 3px;
+      color: #FFFFFF;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .hero-title {
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 700;
+      color: #FFFFFF;
+      letter-spacing: 3px;
+      line-height: 1.1;
+    }
+
+    /* ===== OVERVIEW ===== */
+    #overview {
+      background: #FEFAF0;
+      padding: 100px 80px;
+    }
+    .overview-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 80px;
+      align-items: start;
+    }
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #114651;
+      margin-bottom: 14px;
+      display: block;
+    }
+    .overview-body {
+      font-size: 0.95rem;
+      line-height: 1.85;
+      color: #522F1D;
+      margin-bottom: 48px;
+    }
+    .overview-body:last-child { margin-bottom: 0; }
+    .overview-right-item {
+      margin-bottom: 36px;
+    }
+    .overview-right-item:last-child { margin-bottom: 0; }
+    .overview-right-text {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: #522F1D;
+    }
+
+    /* ===== SHARED SECTION WRAPPER ===== */
+    .case-section {
+      padding: 80px 80px;
+      max-width: 1260px;
+      margin: 0 auto;
+    }
+    .case-section-full {
+      padding: 80px 80px;
+    }
+
+    /* ===== LOGOS SECTION ===== */
+    #logos {
+      background: #fff;
+    }
+    .logos-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 80px 80px;
+    }
+    .three-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 32px;
+    }
+    .col-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: #114651;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .placeholder-box {
+      border-radius: 12px;
+      display: block;
+      width: 100%;
+    }
+    .logo-placeholder {
+      height: 150px;
+      background: #E0BC74;
+      border-radius: 12px;
+    }
+
+    /* ===== DESCRIPTION BLOCK ===== */
+    #logo-desc {
+      background: #FEFAF0;
+      padding: 60px 80px;
+      text-align: left;
+    }
+    .desc-text {
+      max-width: 760px;
+      margin: 0 auto;
+      font-size: 0.95rem;
+      line-height: 1.9;
+      color: #522F1D;
+      opacity: 0.85;
+    }
+
+    /* ===== IMAGE GRID SECTIONS ===== */
+    .image-section {
+      background: #FEFAF0;
+      padding: 60px 80px;
+    }
+    .image-section + .image-section {
+      padding-top: 0;
+    }
+    .two-col-images {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .two-col-images .section-label {
+      margin-bottom: 20px;
+    }
+    .image-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .img-placeholder {
+      width: 100%;
+      height: 300px;
+      border-radius: 12px;
+      display: block;
+    }
+
+    /* ===== BRAND COLLATERAL ===== */
+    #collateral {
+      background: #FEFAF0;
+      padding: 60px 80px 100px;
+    }
+    .collateral-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .two-by-two {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #FEFAF0;
+      color: #522F1D;
+      padding: 48px 48px 36px;
+      border-top: 1px solid rgba(82,47,29,0.1);
+    }
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 12px;
+    }
+    .footer-brand .footer-tagline { font-size: 0.85rem; opacity: 0.65; letter-spacing: 0.3px; }
+    .footer-copy {
+      max-width: 1100px;
+      margin: 28px auto 0;
+      padding-top: 20px;
+      border-top: 1px solid rgba(82,47,29,0.2);
+      font-size: 0.78rem;
+      opacity: 0.5;
+      text-align: center;
+    }
+
+    /* ===== BACK TO TOP ===== */
+    .back-to-top {
+      position: fixed;
+      bottom: 28px; right: 28px;
+      width: 46px; height: 46px;
+      background: #a13a1e;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 16px rgba(161,58,30,0.35);
+      cursor: pointer;
+      border: none;
+      z-index: 998;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s, transform 0.2s;
+    }
+    .back-to-top.visible { opacity: 1; pointer-events: auto; }
+    .back-to-top:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(109,58,82,0.4); }
+
+    .hamburger { display: none; }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #FAF6EE;
+        padding: 20px 0;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        z-index: 999;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a {
+        padding: 14px 40px;
+        font-size: 1rem;
+        border-bottom: 1px solid rgba(0,0,0,0.06);
+      }
+      .hamburger {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 24px;
+        height: 18px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+      }
+      .hamburger span {
+        display: block;
+        width: 100%;
+        height: 2px;
+        background: #3a3a3a;
+        border-radius: 2px;
+      }
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      nav { padding: 18px 24px; }
+      .nav-links { gap: 22px; }
+      #hero { padding: 120px 24px 60px; }
+      #overview { padding: 60px 24px; }
+      .overview-inner { grid-template-columns: 1fr; gap: 40px; }
+      .logos-inner { padding: 60px 24px; }
+      .three-col { grid-template-columns: 1fr; }
+      #logo-desc { padding: 40px 24px; }
+      .image-section { padding: 40px 24px; }
+      .image-row { grid-template-columns: 1fr; }
+      #collateral { padding: 40px 24px 60px; }
+      .two-by-two { grid-template-columns: 1fr; }
+      footer { padding: 40px 24px 28px; }
+    }
+    @media (max-width: 560px) {
+      nav { padding: 16px 20px; }
+      .nav-links { gap: 16px; }
+      .nav-hire { padding: 7px 16px; font-size: 0.78rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav>
+    <a href="index.html" class="nav-logo"><img src="Artboard10.png" alt="Talia Vazquez" style="height:40px;display:block;"></a>
+    <ul class="nav-links">
+      <li><a href="work.html">Graphic Design</a></li>
+      <li><a href="illustration.html">Illustration</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="https://drive.google.com/file/d/1BVcCVkNNuXcY_24XeNwy87yWmKQnrnGC/view?usp=drive_link" target="_blank" rel="noopener" class="nav-hire">Resume</a>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section id="hero">
+    <div>
+      <p class="hero-label">2024</p>
+      <h1 class="hero-title">Collab Commons</h1>
+    </div>
+  </section>
+
+  <!-- ===== OVERVIEW ===== -->
+  <section id="overview">
+    <div class="overview-inner">
+      <div class="overview-left">
+        <span class="section-label">overview</span>
+        <p class="overview-body">At The Collab Commons, I developed the brand from the ground up for this collaborative space dedicated to bringing creative minds together. I designed the logo, core brand identity, supporting assets, environmental graphics for both exterior and interior spaces, and cohesive brand collateral to ensure consistency across all touch points.</p>
+        <span class="section-label">challenges</span>
+        <p class="overview-body">A key challenge was creating a brand that felt inspiring and inclusive of diverse creative disciplines while maintaining a strong, unified identity. Designing across both digital and physical environments required balancing creativity, functionality, and scalability.</p>
+      </div>
+      <div class="overview-right">
+        <div class="overview-right-item">
+          <span class="section-label">role</span>
+          <p class="overview-right-text">Brand Designer</p>
+        </div>
+        <div class="overview-right-item">
+          <span class="section-label">tools</span>
+          <p class="overview-right-text">Photoshop, Illustrator</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LOGOS ===== -->
+  <section id="logos">
+    <div class="logos-inner">
+      <div class="three-col">
+        <div>
+          <p class="col-label">primary logo</p>
+          <img src="Artboard 1 copy.png" alt="Collab Commons Primary Logo" style="width:100%;min-height:200px;height:200px;border-radius:12px;object-fit:contain;background:transparent;display:block;">
+        </div>
+        <div>
+          <p class="col-label">secondary logo</p>
+          <img src="Artboard 2 copy 2.png" alt="Collab Commons Secondary Logo" style="width:100%;min-height:200px;height:200px;border-radius:12px;object-fit:contain;background:transparent;display:block;">
+        </div>
+        <div>
+          <p class="col-label">submark</p>
+          <img src="Artboard 2 copy 3.png" alt="Collab Commons Submark" style="width:100%;min-height:200px;height:200px;border-radius:12px;object-fit:contain;background:transparent;display:block;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LOGO DESCRIPTION ===== -->
+  <section id="logo-desc">
+    <p class="desc-text">For the Collab Commons, I created a versatile logo system that reflects creativity and connection. The primary mark balances a playful script with a clean sans-serif to represent collaboration and structure, while the secondary logo and circular submark provide flexible options for digital, social, and brand applications.</p>
+  </section>
+
+  <!-- ===== SOCIAL MEDIA POSTS ===== -->
+  <section class="image-section">
+    <div class="two-col-images">
+      <span class="section-label">social media posts</span>
+      <div class="image-row">
+        <img src="Artboard 29 copy 3.png" alt="Social Media Post" style="width:100%;aspect-ratio:1/1;object-fit:cover;object-position:center;border-radius:0;display:block;">
+        <img src="Artboard 29 copy 4.png" alt="Social Media Post" style="width:100%;aspect-ratio:1/1;object-fit:cover;object-position:center;border-radius:0;display:block;">
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== INTERIOR DESIGN ===== -->
+  <section class="image-section">
+    <div class="two-col-images">
+      <span class="section-label">interior design</span>
+      <div class="image-row">
+        <img src="10f1b63e-0e41-4dd5-8ce8-5196c05839db.png" alt="Interior Design" style="width:100%;height:300px;object-fit:cover;border-radius:0;display:block;">
+        <img src="Free Concrete Wall on the Office Mockup.png" alt="Interior Design" style="width:100%;height:300px;object-fit:cover;border-radius:0;display:block;">
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== EXTERIOR DESIGN ===== -->
+  <section class="image-section">
+    <div class="two-col-images">
+      <span class="section-label">exterior design</span>
+      <div class="image-row">
+        <img src="874619_O7DFCG1 copy.png" alt="Exterior Design" style="width:100%;height:300px;object-fit:cover;border-radius:0;display:block;">
+        <img src="416325446_5ed61d39-52df-48e2-bc7c-475c770d0747 copy.png" alt="Exterior Design" style="width:100%;height:300px;object-fit:cover;border-radius:0;display:block;">
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BRAND COLLATERAL ===== -->
+  <section id="collateral">
+    <div class="collateral-inner">
+      <span class="section-label">brand collateral</span>
+      <div class="two-by-two">
+        <img src="Plastic_Coffee_Mug_Mockup_1 copy.png" alt="Brand Collateral" style="width:100%;height:300px;object-fit:cover;border-radius:0;display:block;">
+        <img src="pen mockup copy.png" alt="Brand Collateral" style="width:100%;height:300px;object-fit:cover;border-radius:0;display:block;">
+        <img src="Wooden-Hanger-T-shirt-Mockup copy.png" alt="Brand Collateral" style="width:100%;height:300px;object-fit:cover;border-radius:0;display:block;">
+        <img src="Gravity-Notebooks-Scene-Free-psd-Mockup copy.png" alt="Brand Collateral" style="width:100%;height:300px;object-fit:cover;border-radius:0;display:block;">
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== VIEW MORE PROJECTS ===== -->
+  <section style="background:#FAF6EF; padding: 60px 80px;">
+    <span style="display:block; font-size:0.75rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#114651; margin-bottom:36px; text-align:center;">View More Projects</span>
+    <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:20px;">
+      <a href="fairytale-brownies.html" style="text-decoration:none; display:block;">
+        <img src="Artboard20.png" alt="Fairytale Brownies" style="width:100%; display:block; border-radius:8px; object-fit:cover; aspect-ratio:4/3;">
+        <p style="margin:10px 0 0; font-size:0.85rem; font-weight:600; color:#3a3a3a; text-align:center;">Fairytale Brownies</p>
+      </a>
+      <a href="driveway-auto-spa.html" style="text-decoration:none; display:block;">
+        <img src="Artboard19.png" alt="Driveway Auto Spa" style="width:100%; display:block; border-radius:8px; object-fit:cover; aspect-ratio:4/3;">
+        <p style="margin:10px 0 0; font-size:0.85rem; font-weight:600; color:#3a3a3a; text-align:center;">Driveway Auto Spa</p>
+      </a>
+      <a href="game-conference.html" style="text-decoration:none; display:block;">
+        <img src="Artboard17.png" alt="G.A.M.E. Conference" style="width:100%; display:block; border-radius:8px; object-fit:cover; aspect-ratio:4/3;">
+        <p style="margin:10px 0 0; font-size:0.85rem; font-weight:600; color:#3a3a3a; text-align:center;">G.A.M.E. Conference</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" style="display:block;margin:0 auto 4px;text-align:center;"><img src="Artboard10.png" alt="Talia Vazquez" style="height:60px;display:block;margin:0 auto;"></a>
+        <div class="footer-tagline">Graphic Designer &amp; Illustrator · Phoenix, AZ</div>
+      </div>
+    </div>
+    <div class="footer-copy">
+      © 2026 Talia Vazquez
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
+
+  <script>
+    document.getElementById('hamburger').addEventListener('click', function() {
+      document.querySelector('.nav-links').classList.toggle('open');
+    });
+
+    const btn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      btn.classList.toggle('visible', window.scrollY > 400);
+    });
+  </script>
+
+</body>
+</html>

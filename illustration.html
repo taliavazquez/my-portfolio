@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Illustration · Talia Vazquez</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --eggplant: #6D3A52;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300;
+      color: #522F1D;
+      background: #FEFAF0;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3 { font-family: 'Poppins', sans-serif; font-weight: 700; }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* ===== NAVBAR ===== */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 48px;
+      background: #FEFAF0;
+    }
+    .nav-logo {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #a13a1e;
+      letter-spacing: -0.2px;
+      white-space: nowrap;
+    }
+    .nav-logo span { color: #a13a1e; }
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .nav-links a {
+      font-size: 0.78rem;
+      font-weight: 300;
+      color: #a13a1e;
+      opacity: 0.85;
+      transition: color 0.2s, opacity 0.2s;
+    }
+    .nav-links a:hover { color: #a13a1e; opacity: 1; }
+    .nav-hire {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #FEFAF0;
+      padding: 7px 18px;
+      border-radius: 6px;
+      border: 2px solid #AE9662;
+      background: #AE9662;
+      transition: background 0.2s, color 0.2s;
+      white-space: nowrap;
+    }
+    .nav-hire:hover { background: #AE9662; color: #FEFAF0; }
+
+    /* ===== HERO ===== */
+    #hero {
+      background: url('Artboard21 copy.png') center center / cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 60vh;
+      padding: 80px 48px 60px;
+      text-align: center;
+    }
+    .hero-inner { max-width: 1000px; width: 100%; margin-top: 60px; }
+    .hero-headline {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 700;
+      color: #AE9662;
+      letter-spacing: 2px;
+    }
+
+    /* ===== PROJECT GRID ===== */
+    #projects {
+      background: #FEFAF0;
+      padding: 80px 48px 100px;
+    }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .project-card {
+      border-radius: 16px;
+      overflow: hidden;
+      display: block;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(82,47,29,0.15);
+    }
+    .project-thumb {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      display: block;
+      object-fit: cover;
+      object-position: center;
+    }
+    .project-thumb-placeholder {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      display: block;
+    }
+    .project-info {
+      padding: 18px 20px 22px;
+      background: #FEFAF0;
+    }
+    .project-name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #522F1D;
+      margin-bottom: 8px;
+    }
+    .project-desc {
+      font-size: 0.78rem;
+      font-weight: 300;
+      color: #522F1D;
+      opacity: 0.75;
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .project-tag {
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: #522F1D;
+      background: rgba(82,47,29,0.08);
+      border: 1px solid rgba(82,47,29,0.2);
+      border-radius: 100px;
+      padding: 3px 10px;
+      white-space: nowrap;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #FEFAF0;
+      color: #522F1D;
+      padding: 48px 48px 36px;
+      margin-top: 0;
+    }
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 12px;
+    }
+    .footer-brand .footer-tagline { font-size: 0.85rem; opacity: 0.65; letter-spacing: 0.3px; }
+    .footer-copy {
+      max-width: 1100px;
+      margin: 28px auto 0;
+      padding-top: 20px;
+      border-top: 1px solid rgba(82,47,29,0.2);
+      font-size: 0.78rem;
+      opacity: 0.5;
+      text-align: center;
+    }
+
+    /* ===== BACK TO TOP ===== */
+    .back-to-top {
+      position: fixed;
+      bottom: 28px; right: 28px;
+      width: 46px; height: 46px;
+      background: #a13a1e;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 16px rgba(161,58,30,0.35);
+      cursor: pointer;
+      border: none;
+      z-index: 998;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s, transform 0.2s;
+    }
+    .back-to-top.visible { opacity: 1; pointer-events: auto; }
+    .back-to-top:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(109,58,82,0.4); }
+
+    .hamburger { display: none; }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #FAF6EE;
+        padding: 20px 0;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        z-index: 999;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a {
+        padding: 14px 40px;
+        font-size: 1rem;
+        border-bottom: 1px solid rgba(0,0,0,0.06);
+      }
+      .hamburger {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 24px;
+        height: 18px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+      }
+      .hamburger span {
+        display: block;
+        width: 100%;
+        height: 2px;
+        background: #3a3a3a;
+        border-radius: 2px;
+      }
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      nav { padding: 18px 24px; }
+      .nav-links { gap: 22px; }
+      #hero { padding: 120px 24px 60px; }
+      #projects { padding: 60px 24px 80px; }
+      .projects-grid { grid-template-columns: 1fr; max-width: 520px; }
+      footer { padding: 40px 24px 28px; }
+    }
+    @media (max-width: 560px) {
+      nav { padding: 16px 20px; }
+      .nav-links { gap: 16px; }
+      .nav-hire { padding: 7px 16px; font-size: 0.78rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav>
+    <a href="index.html" class="nav-logo"><img src="Artboard10.png" alt="Talia Vazquez" style="height:40px;display:block;"></a>
+    <ul class="nav-links">
+      <li><a href="work.html">Graphic Design</a></li>
+      <li><a href="illustration.html">Illustration</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="https://drive.google.com/file/d/1BVcCVkNNuXcY_24XeNwy87yWmKQnrnGC/view?usp=drive_link" target="_blank" rel="noopener" class="nav-hire">Resume</a>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section id="hero">
+    <div class="hero-inner">
+      <h1 class="hero-headline">Illustration</h1>
+    </div>
+  </section>
+
+  <!-- ===== PROJECT GRID ===== -->
+  <section id="projects">
+    <div class="projects-grid">
+    </div>
+  </section>
+
+  <section style="display:flex; justify-content:center; align-items:center; padding: 60px 20px; background:#FAF6EE;">
+    <p style="font-size:1.5rem; font-weight:500; color:#A07840; letter-spacing:2px; text-align:center;">work coming soon :)</p>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" style="display:block;margin:0 auto 4px;text-align:center;"><img src="Artboard10.png" alt="Talia Vazquez" style="height:60px;display:block;margin:0 auto;"></a>
+        <div class="footer-tagline">Graphic Designer &amp; Illustrator · Phoenix, AZ</div>
+      </div>
+    </div>
+    <div class="footer-copy">
+      © 2026 Talia Vazquez
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
+
+  <script>
+    document.getElementById('hamburger').addEventListener('click', function() {
+      document.querySelector('.nav-links').classList.toggle('open');
+    });
+
+    const btn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      btn.classList.toggle('visible', window.scrollY > 400);
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.project-card').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(28px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
+    });
+  </script>
+
+</body>
+</html>
