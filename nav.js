@@ -2,14 +2,15 @@ document.addEventListener('DOMContentLoaded', function() {
   const path = window.location.pathname;
   const currentPage = path.split('/').pop();
 
-  const navLinks = document.querySelectorAll('nav a.nav-link');
+  const navLinks = document.querySelectorAll('.nav-links a.nav-link');
 
   navLinks.forEach(link => {
     link.classList.remove('active');
     const href = link.getAttribute('href');
-
-    if (href === currentPage) {
-      link.classList.add('active');
-    }
+    const isHome = (currentPage === 'index.html' || currentPage === '');
+    const isActive =
+      href === currentPage ||
+      (isHome && href === 'index.html');
+    if (isActive) link.classList.add('active');
   });
 });
