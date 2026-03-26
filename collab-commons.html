@@ -291,26 +291,27 @@
     .back-to-top.visible { opacity: 1; pointer-events: auto; }
     .back-to-top:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(109,58,82,0.4); }
 
-    .hamburger { display: none; }
-
-    @media (max-width: 768px) {
+    @media (max-width: 1024px) {
+      nav { position: relative; }
       .nav-links {
         display: none;
         flex-direction: column;
         position: absolute;
         top: 100%;
         left: 0;
-        width: 100%;
+        width: 100vw;
         background: #FAF6EE;
         padding: 20px 0;
         box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        z-index: 999;
+        z-index: 9999;
       }
       .nav-links.open { display: flex; }
+      .nav-links li { list-style: none; }
       .nav-links a {
         padding: 14px 40px;
         font-size: 1rem;
         border-bottom: 1px solid rgba(0,0,0,0.06);
+        display: block;
       }
       .hamburger {
         display: flex;
@@ -322,6 +323,7 @@
         border: none;
         cursor: pointer;
         padding: 0;
+        margin-left: auto;
       }
       .hamburger span {
         display: block;
@@ -329,7 +331,16 @@
         height: 2px;
         background: #3a3a3a;
         border-radius: 2px;
+        transition: all 0.3s ease;
       }
+      .hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+      .hamburger.open span:nth-child(2) { opacity: 0; }
+      .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+      .nav-hire, .resume-btn { display: none; }
+    }
+    @media (min-width: 1025px) {
+      .hamburger { display: none; }
+      .nav-links { display: flex !important; flex-direction: row; position: static; box-shadow: none; padding: 0; width: auto; background: transparent; }
     }
 
     /* ===== PREMIUM ANIMATIONS ===== */
@@ -451,7 +462,54 @@
     }
     .footer-links a:hover { opacity: 1; }
     @media (max-width: 768px) {
-      footer { padding: 40px 24px !important; }
+      footer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 12px;
+        padding: 40px 24px !important;
+      }
+      footer .footer-links, footer nav, footer ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+      }
+      footer a, footer p, footer span {
+        display: block;
+        text-align: center;
+      }
+    }
+    /* ===== GLOBAL RESPONSIVE ===== */
+    html, body { overflow-x: hidden; max-width: 100%; }
+    @media (max-width: 1024px) {
+      section, .section-inner, .overview-inner, .emails-inner, .process-inner {
+        padding: 40px 24px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+      .emails-grid, .process-grid, .five-col-images, [style*="grid-template-columns"] {
+        grid-template-columns: 1fr 1fr !important;
+      }
+      img { max-width: 100% !important; height: auto; }
+      h1, h2, h3 { font-size: clamp(1.6rem, 6vw, 3rem) !important; white-space: normal !important; }
+      p { font-size: clamp(0.9rem, 2.5vw, 1.1rem) !important; }
+    }
+    @media (max-width: 768px) {
+      .emails-grid, .process-grid, [style*="grid-template-columns: repeat(3"] {
+        grid-template-columns: 1fr !important;
+      }
+      .overview-cols, .cols, [style*="grid-template-columns: 1fr 1fr"] {
+        grid-template-columns: 1fr !important;
+      }
+      .project-cards, .cards-grid {
+        grid-template-columns: 1fr !important;
+      }
+      .btn-group, [style*="display:flex"][style*="gap"] {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+      }
     }
   </style>
 </head>
@@ -611,9 +669,14 @@
   <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
 
   <script>
-    document.getElementById('hamburger').addEventListener('click', function() {
-      document.querySelector('.nav-links').classList.toggle('open');
-    });
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    if (hamburger && navLinks) {
+      hamburger.addEventListener('click', function() {
+        hamburger.classList.toggle('open');
+        navLinks.classList.toggle('open');
+      });
+    }
 
     const btn = document.getElementById('backToTop');
     window.addEventListener('scroll', () => {
