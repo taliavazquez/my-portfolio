@@ -622,6 +622,16 @@
         line-height: 1.3 !important;
       }
     }
+    @media (max-width: 1024px) {
+      .graphic-design-card h2 {
+        white-space: nowrap !important;
+        font-size: clamp(1.4rem, 4vw, 2rem) !important;
+      }
+      .graphic-design-card h2 span {
+        display: block !important;
+        margin-bottom: 8px !important;
+      }
+    }
     @media (max-width: 768px) {
       .card-title, .section-card h2, .card h2, .card h3 {
         font-size: clamp(1.2rem, 6vw, 1.6rem) !important;
@@ -721,7 +731,7 @@
   <!-- ===== SERVICE CARDS ===== -->
   <section id="services">
     <div class="services-grid">
-      <div class="service-card">
+      <div class="service-card graphic-design-card">
         <h2><span style="color:#a13a1e;">✦</span> Graphic Design</h2>
         <p>I love using design to bring ideas to life and turn concepts into something people can see and connect with. It is exciting to take an idea and shape it into something real.</p>
         <a href="work.html" class="btn-outline">View My Work</a>
