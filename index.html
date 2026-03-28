@@ -623,13 +623,15 @@
       }
     }
     @media (max-width: 1024px) {
-      .graphic-design-card h2 {
+      .graphic-design-card h2,
+      .illustration-card h2 {
+        font-size: clamp(1.6rem, 4vw, 2.2rem) !important;
         white-space: nowrap !important;
-        font-size: clamp(1.4rem, 4vw, 2rem) !important;
       }
-      .graphic-design-card h2 span {
-        display: block !important;
-        margin-bottom: 8px !important;
+      .graphic-design-card h2 span,
+      .illustration-card h2 span {
+        display: inline !important;
+        margin-bottom: 0 !important;
       }
     }
     @media (max-width: 768px) {
@@ -736,7 +738,7 @@
         <p>I love using design to bring ideas to life and turn concepts into something people can see and connect with. It is exciting to take an idea and shape it into something real.</p>
         <a href="work.html" class="btn-outline">View My Work</a>
       </div>
-      <div class="service-card">
+      <div class="service-card illustration-card">
         <h2><span style="color:#a13a1e;">✦</span> Illustrations</h2>
         <p>I am passionate about illustration, especially children's book and logo illustration. I enjoy creating visuals that are playful, meaningful, and help bring ideas and stories to life.</p>
         <a href="illustration.html" class="btn-outline">View My Work</a>
